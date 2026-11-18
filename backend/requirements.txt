@@ -1,0 +1,53 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+sqlalchemy[asyncio]==2.0.35
+asyncpg==0.29.0
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+pydantic-settings==2.5.2
+pydantic[email]==2.9.2
+python-multipart==0.0.12
+
+cryptography==43.0.1
+
+# ── Data source drivers ──────────────────────────────────────
+# postgres wire: PostgreSQL, CockroachDB, Yugabyte, Redshift, Materialize, RisingWave, Neon, Supabase, Timescale
+psycopg2-binary==2.9.9
+# mysql wire: MySQL, MariaDB, TiDB, StarRocks, Doris, PlanetScale, SingleStore
+pymysql==1.1.1
+# embedded engines + file queries
+duckdb==1.1.3
+duckdb-engine==0.13.6
+# Microsoft SQL Server / Azure Synapse
+pymssql==2.3.2
+# Oracle (thin mode, no client install needed)
+oracledb==2.5.1
+# ClickHouse (cloud + self-hosted)
+clickhouse-connect==0.8.11
+# Trino / Presto / Starburst (federated queries)
+trino[sqlalchemy]==0.330.0
+# Snowflake
+snowflake-sqlalchemy==1.7.3
+# Google BigQuery
+sqlalchemy-bigquery==1.12.1
+# Databricks SQL warehouse
+databricks-sqlalchemy==2.0.5
+# AWS Athena (S3 via SQL)
+PyAthena[SQLAlchemy]==3.12.2
+
+# ── Ingestion: files, Google Sheets, REST APIs ──────────────
+pandas==2.2.3
+openpyxl==3.1.5
+requests==2.32.3
+
+# ── Charting: figures built server-side, rendered by react-plotly.js ──
+plotly==5.24.1
+
+# ── Lineage: SQL parsing for column-level lineage ───────────
+sqlglot==25.34.0
+
+# ── AI / LLM (pluggable providers) ──────────────────────────
+anthropic==0.39.0
+openai==1.54.4
+httpx==0.27.2  # pin: openai/anthropic 0.39 break with httpx>=0.28 (proxies arg removed)

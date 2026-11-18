@@ -1,0 +1,26 @@
+# Production frontend image: builds the app ahead of time, then serves it.
+# Pages are pre-compiled, so navigation is instant (no on-demand dev compile).
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install deps first (cached layer)
+COPY package*.json ./
+RUN npm install && npm cache clean --force
+
+# App source (node_modules/.next excluded via .dockerignore)
+COPY . .
+
+# NEXT_PUBLIC_* vars are inlined at build time, so the API URL must be set here.
+# Override at build with: --build-arg NEXT_PUBLIC_API_URL=https://your-domain
+ARG NEXT_PUBLIC_API_URL=http://localhost:8000
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Pre-build everything (the "cook the buffet" step)
+RUN npm run build
+
+EXPOSE 3000
+
+# Serve the pre-built app
+CMD ["npm", "run", "start"]
